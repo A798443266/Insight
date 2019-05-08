@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/system_white">
+
+    <RelativeLayout
+        android:id="@+id/rl_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="-2dp"
+        android:orientation="horizontal"
+        android:background="@drawable/collect_head_bg">
+
+        <LinearLayout
+            android:id="@+id/ll_fenlei"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="分类"
+                android:textSize="14sp"
+                android:textColor="@color/system_white"/>
+
+            <ImageView
+                android:id="@+id/iv_jiantou"
+                android:layout_width="7dp"
+                android:layout_height="4dp"
+                android:background="@drawable/icon_jiantou"
+                android:layout_marginLeft="8dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_chuanshu"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/icon_history"
+            android:layout_toLeftOf="@+id/iv_paixv"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/iv_paixv"
+            android:layout_width="13dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_paixv_white"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/rl_bar"
+        android:background="@drawable/search_bg_gray"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_marginLeft="10dp"
+            android:hint="搜索"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/system_black"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:background="@drawable/icon_yuyin"
+            android:layout_marginRight="15dp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/icon_search_blue"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_search"
+        android:scrollbars="none"
+        android:layout_marginTop="10dp"/>
+
+    <include layout="@layout/fenlei"
+        android:id="@+id/pop_fenlei"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:visibility="gone"
+        android:layout_below="@+id/rl_bar"
+        android:layout_marginTop="-2dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:indicatorColor="@color/system_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="努力加载中..."
+            android:textColor="@color/system_black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

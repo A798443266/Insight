@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="220dp"
+    android:background="@drawable/bg_round_white"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="添加标签"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/tv_biaoqian_bg"
+            android:gravity="center_vertical"
+            android:paddingTop="2dp"
+            android:visibility="gone"
+            android:paddingBottom="2dp">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="宇宙"
+                android:textColor="#5098fa"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/iv_close1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/icon_cha_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/tv_biaoqian_bg"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="宇宙"
+                android:textColor="#5098fa"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/iv_close2"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/icon_cha_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll3"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/tv_biaoqian_bg"
+            android:gravity="center_vertical"
+            android:paddingTop="2dp"
+            android:visibility="gone"
+            android:paddingBottom="2dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="宇宙"
+                android:textColor="#5098fa"
+                android:textSize="11sp" />
+
+            <ImageView
+                android:id="@+id/iv_close3"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/icon_cha_blue" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tv_biaoqian_bg">
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:singleLine="true"
+            android:hint="自定义标签"
+            android:textColor="@color/system_blue1"
+            android:textColorHint="#a5cfff"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gou"
+            android:layout_width="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_gou"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_gou" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp">
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg"
+            android:gravity="center"
+            android:text="创建"
+            android:textColor="@color/system_white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/tv_biaoqian_bg"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/system_blue1"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

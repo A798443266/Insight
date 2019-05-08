@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/system_white"
+    android:paddingBottom="10dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#f8f9fc"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+        <ImageView
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:background="@drawable/icon_item_doc_yuan" />
+
+        <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="2019年1月1日"
+            android:textColor="#888"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:paddingRight="20dp"
+        android:layout_below="@+id/ll">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019-04-10 13:29"
+            android:textColor="#888"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="112.5MB"
+            android:textColor="#888"
+            android:textSize="11sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/checkbox_bg"
+                android:button="@null" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <com.luo.a10.view.MyRoundLayout
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/ll1"
+        android:layout_marginTop="10dp"
+        app:roundradius="5dp">
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:background="@drawable/city1" />
+    </com.luo.a10.view.MyRoundLayout>
+
+
+</RelativeLayout>

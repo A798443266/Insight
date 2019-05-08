@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_centerInParent="true">
+
+        <com.luo.a10.view.MyRoundLayout
+            android:id="@+id/ml_bg"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_centerInParent="true"
+            app:roundradius="3dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:background="#bbd6fc"/>
+
+        </com.luo.a10.view.MyRoundLayout>
+
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:scaleType="center"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/icon_fenlei_select"
+            android:scaleType="center"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

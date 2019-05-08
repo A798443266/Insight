@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/system_white"
+    tools:context=".activity.DocSeeActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/back_bg">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_back"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/rl_back"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:text="文档标题"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_close"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_title"
+        android:background="@color/system_gray1" />
+
+    <RelativeLayout
+        android:id="@+id/rl_info"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/view"
+        android:background="#fafafa"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_yuedu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/icon_seedoc1" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/iv_yuedu"
+            android:background="@drawable/icon_seedoc2" />
+
+        <ImageView
+            android:id="@+id/iv_info"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/iv_beizhu"
+            android:background="@drawable/icon_seedoc3" />
+
+        <ImageView
+            android:id="@+id/iv_beizhu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/cv_user_pic"
+            android:background="@drawable/icon_seedoc4" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cv_user_pic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/pic" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_info"
+        android:background="#dcdcdc" />
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view1"
+        android:background="#fafafa">
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:indicatorColor="@color/system_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加载中..."
+            android:textColor="@color/system_black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

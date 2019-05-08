@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="520dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:background="@drawable/card_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="将证件扫描到一张A4纸中，方便打印"
+            android:textColor="#aaa"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="140dp"
+                android:layout_height="90dp"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:background="#bfa"/>
+
+            <ImageView
+                android:id="@+id/iv2"
+                android:layout_width="140dp"
+                android:layout_height="90dp"
+                android:visibility="gone"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="#bfa"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="保存"
+            android:textColor="@color/system_white"
+            android:textSize="12sp"
+            android:background="@drawable/btn_login_bg"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="取消"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/system_white"
+            android:textSize="12sp"
+            android:background="@drawable/btn_login_bg"/>
+    </LinearLayout>
+
+</LinearLayout>

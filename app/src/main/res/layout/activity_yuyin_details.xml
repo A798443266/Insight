@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:voiceView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/system_white"
+    tools:context=".activity.YuyinDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="16dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_back" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/rl_back"
+            android:layout_marginLeft="5dp"
+            android:text="语音速记1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_more"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="8dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_gengduo" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/system_gray"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <com.carlos.voiceline.mylibrary.VoiceLineView
+        android:id="@+id/voicLine"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        voiceView:fineness="three"
+        voiceView:lineSpeed="40"
+        voiceView:maxVolume="65"
+        voiceView:middleLine="#00000000"
+        voiceView:middleLineHeight="1dp"
+        voiceView:rectSpace="2dp"
+        voiceView:rectWidth="1dp"
+        voiceView:sensibility="four"
+        voiceView:viewMode="rect"
+        voiceView:voiceLine="#999"
+        android:background="#f7f7f7" />
+
+    <TextView
+        android:id="@+id/tv_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="00:08"
+        android:textColor="#333"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:08"
+        android:textColor="#333"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:layout_gravity="center_horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标签1"
+                    android:textColor="@color/system_gray"
+                    android:layout_marginTop="10dp"
+                    android:textSize="11sp"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#333"
+                    android:textSize="10sp"
+                    android:text="00:05"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/system_gray1"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标签2"
+                    android:textColor="@color/system_gray"
+                    android:layout_marginTop="10dp"
+                    android:textSize="11sp"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#333"
+                    android:textSize="10sp"
+                    android:text="00:10"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/system_black"
+            android:layout_marginTop="20dp"
+            android:text="    今天上课的主要内容是熟悉Linux的常用命令，并且能在Linux系统中安装Mysql数据库，利用虚拟机充当服务器，在window系统下能正常连接并使用Mysql。"/>
+
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loading"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:indicatorColor="@color/system_blue"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#eff5ff">
+
+        <LinearLayout
+            android:id="@+id/ll_change"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/iv_play"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_zhuan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="转文本"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:textColor="@color/system_blue1"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/icon_play_white1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/iv_play"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_biaoji" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标记"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:textColor="@color/system_blue1"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

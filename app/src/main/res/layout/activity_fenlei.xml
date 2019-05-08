@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/system_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="-2dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/collect_head_bg">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="14dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_back_white" />
+        </RelativeLayout>
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:tl_indicator_color="@color/system_white"
+            app:tl_tab_space_equal="true"
+            app:tl_indicator_style="TRIANGLE"
+            app:tl_textBold="SELECT"
+            app:tl_textSelectColor="@color/system_white"
+            app:tl_textUnselectColor="@color/system_white"
+            app:tl_textsize="15sp" >
+
+        </com.flyco.tablayout.SlidingTabLayout>
+
+        <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:background="@drawable/icon_paixv_white"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

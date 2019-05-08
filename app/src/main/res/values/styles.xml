@@ -1,0 +1,77 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.login" parent="AppTheme">
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation" tools:ignore="NewApi">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+
+    <declare-styleable name="PerfectArcView">
+        <attr name="p_arc_startColor" format="color" />
+        <attr name="p_arc_endColor" format="color" />
+        <attr name="p_arc_showImage" format="boolean" />
+    </declare-styleable>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
+    </style>
+
+    <style name="popyuyin_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_yuyin_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_yuyin_out</item>
+    </style>
+
+    <style name="pop_docinfo_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_docinfo_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_docinfo_out</item>
+    </style>
+
+    <style name="popphoto_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_photo_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_photo_out</item>
+    </style>
+
+    <style name="popfolder_animation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_folder_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_folder_out</item>
+    </style>
+
+    <style name="ProgressDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+
+</resources>

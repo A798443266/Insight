@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/system_white">
+
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/back_bg">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="16dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_back" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/search_bg"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:layout_marginLeft="10dp"
+                android:hint="搜索"
+                android:imeOptions="actionSearch"
+                android:textSize="15dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/system_black"
+                android:layout_marginRight="10dp"/>
+
+            <ImageView
+                android:id="@+id/iv_yuyin"
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_yuyin"
+                android:layout_marginRight="15dp"/>
+
+            <ImageView
+                android:id="@+id/icon_search"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/icon_search"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.luo.a10.view.MyRoundLayout
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            app:roundradius="8dp">
+
+            <com.jayfang.dropdownmenu.DropDownMenu
+                android:id="@+id/menu1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_menu_bg"/>
+
+        </com.luo.a10.view.MyRoundLayout>
+
+        <com.luo.a10.view.MyRoundLayout
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            app:roundradius="8dp"
+            android:layout_marginLeft="20dp">
+
+            <com.jayfang.dropdownmenu.DropDownMenu
+                android:id="@+id/menu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_menu_bg"/>
+        </com.luo.a10.view.MyRoundLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索历史"
+        android:layout_below="@+id/ll2"
+        android:textColor="@color/system_black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"/>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:divider="@null"
+        android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/tv_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清空搜索历史"
+        android:layout_below="@+id/lv"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/Nag_text_color"
+        android:textSize="12sp"
+        android:layout_marginTop="20dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            app:indicatorColor="@color/system_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="努力加载中..."
+            android:textColor="@color/system_black"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
