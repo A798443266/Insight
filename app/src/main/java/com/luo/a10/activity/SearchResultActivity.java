@@ -1,24 +1,33 @@
 package com.luo.a10.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -34,12 +43,19 @@ import com.luo.a10.adapter.fenlei.PhotoLvAdapter;
 import com.luo.a10.adapter.fenlei.QitaAdapter;
 import com.luo.a10.adapter.fenlei.VideoAdapter;
 import com.luo.a10.bean.change.FolderAndDoc;
+import com.luo.a10.camera.CameraActivity;
 import com.luo.a10.utils.JsonUtils;
+import com.luo.a10.utils.UIUtils;
 import com.luo.a10.view.MyGridView;
 import com.luo.a10.view.MyListView;
+import com.zyyoona7.popup.EasyPopup;
+import com.zyyoona7.popup.XGravity;
+import com.zyyoona7.popup.YGravity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -70,6 +86,8 @@ public class SearchResultActivity extends AppCompatActivity {
     MyListView lvPhoto;
     @BindView(R.id.tv_cancel)
     TextView tvCancel;
+    @BindView(R.id.tv_ok)
+    TextView tvOk;
     @BindView(R.id.tv_num)
     TextView tvNum;
     @BindView(R.id.iv)
@@ -96,15 +114,18 @@ public class SearchResultActivity extends AppCompatActivity {
     TextView tvQitaNum;
     @BindView(R.id.ll_qita)
     LinearLayout llQita;
+    @BindView(R.id.boss)
+    CoordinatorLayout boss;
 
     private Typeface mTf;//声明字体库
-    private boolean isSelectMode;//是否是选择文件的模式
+    private int isSelectMode = -1;//操作模式  0：新建归档  1：合并照片
     private PhotoAdapter adapter1;
     private VideoAdapter adapter2;
     private FenleiDocAdapter adapter3;
     private MusicAdapter adapter4;
     private QitaAdapter adapter5;
     private PhotoLvAdapter adapter6;
+    private EasyPopup mCirclePop;
 
     private List<FolderAndDoc> addSelects = new ArrayList<>();
 
@@ -127,11 +148,22 @@ public class SearchResultActivity extends AppCompatActivity {
         changeToolBar();
 
         init();
+        //弹出常用工具
+        boss.post(new Runnable() {
+            @Override
+            public void run() {
+                popTools(); //PopupWindow必须在某个事件中显示或者是开启一个新线程去调用，不能直接在onCreate方法中显示一个Popupwindow
+            }
+        });
     }
+
 
     private void init() {
         result = getIntent().getStringExtra("result");
-        files = JsonUtils.parseSearch(result);
+        if (!TextUtils.isEmpty(result)) {
+            files = JsonUtils.parseSearch(result);
+        }
+
         if (files == null || files.size() == 0) {
             ll.setVisibility(View.GONE);
             llQita.setVisibility(View.GONE);
@@ -140,7 +172,6 @@ public class SearchResultActivity extends AppCompatActivity {
             llMusic.setVisibility(View.GONE);
             llVideo.setVisibility(View.GONE);
             tvNum.setText("没有找到对应的文件");
-            Toast.makeText(this,"没有找到对应的文件",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -163,6 +194,7 @@ public class SearchResultActivity extends AppCompatActivity {
         initData();
         initChart();
     }
+
 
     private void initData() {
 
@@ -226,9 +258,10 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //开启选择文件的模式
-                if (!isSelectMode) {
-                    isSelectMode = true;
+                if (isSelectMode == -1) {
+                    isSelectMode = 0;
                     tvCancel.setVisibility(View.VISIBLE);
+                    tvOk.setVisibility(View.VISIBLE);
                     selectNum += adapter1.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 }
@@ -239,7 +272,7 @@ public class SearchResultActivity extends AppCompatActivity {
         gvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isSelectMode) {//当前已经开启了选择文件的模式
+                if (isSelectMode != -1) {//当前已经开启了选择文件的模式
                     selectNum += adapter1.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 } else {
@@ -256,9 +289,10 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //开启选择文件的模式
-                if (!isSelectMode) {
-                    isSelectMode = true;
+                if (isSelectMode == -1) {
+                    isSelectMode = 0;
                     tvCancel.setVisibility(View.VISIBLE);
+                    tvOk.setVisibility(View.VISIBLE);
                     selectNum += adapter2.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 }
@@ -269,7 +303,7 @@ public class SearchResultActivity extends AppCompatActivity {
         gvVideo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isSelectMode) {//当前已经开启了选择文件的模式
+                if (isSelectMode != -1) {//当前已经开启了选择文件的模式
                     selectNum += adapter2.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 } else {
@@ -286,9 +320,10 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //开启选择文件的模式
-                if (!isSelectMode) {
-                    isSelectMode = true;
+                if (isSelectMode == -1) {
+                    isSelectMode = 0;
                     tvCancel.setVisibility(View.VISIBLE);
+                    tvOk.setVisibility(View.VISIBLE);
                     selectNum += adapter3.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 }
@@ -299,7 +334,7 @@ public class SearchResultActivity extends AppCompatActivity {
         gvDoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isSelectMode) {//当前已经开启了选择文件的模式
+                if (isSelectMode != -1) {//当前已经开启了选择文件的模式
                     selectNum += adapter3.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 } else {
@@ -316,9 +351,10 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //开启选择文件的模式
-                if (!isSelectMode) {
-                    isSelectMode = true;
+                if (isSelectMode == -1) {
+                    isSelectMode = 0;
                     tvCancel.setVisibility(View.VISIBLE);
+                    tvOk.setVisibility(View.VISIBLE);
                     selectNum += adapter4.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 }
@@ -329,7 +365,7 @@ public class SearchResultActivity extends AppCompatActivity {
         gvMusic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isSelectMode) {//当前已经开启了选择文件的模式
+                if (isSelectMode != -1) {//当前已经开启了选择文件的模式
                     selectNum += adapter4.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 } else {
@@ -343,9 +379,10 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //开启选择文件的模式
-                if (!isSelectMode) {
-                    isSelectMode = true;
+                if (isSelectMode == -1) {
+                    isSelectMode = 0;
                     tvCancel.setVisibility(View.VISIBLE);
+                    tvOk.setVisibility(View.VISIBLE);
                     selectNum += adapter5.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 }
@@ -356,7 +393,7 @@ public class SearchResultActivity extends AppCompatActivity {
         gvQita.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (isSelectMode) {//当前已经开启了选择文件的模式
+                if (isSelectMode != -1) {//当前已经开启了选择文件的模式
                     selectNum += adapter5.setSelect(position);
                     tvNum.setText("已选择" + selectNum + "项");
                 } else {
@@ -366,15 +403,82 @@ public class SearchResultActivity extends AppCompatActivity {
         });
     }
 
+    private void popTools() {
+        View view = View.inflate(this, R.layout.pop_more1, null);
+        LinearLayout ll5 = view.findViewById(R.id.ll5);
+        LinearLayout ll3 = view.findViewById(R.id.ll3);
+        ImageView iv_xiala = view.findViewById(R.id.iv_xiala);
+        mCirclePop = new EasyPopup(this)
+                .setContentView(view)
+                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                .setHeight(UIUtils.dp2px(260))
+                .setBackgroundDimEnable(false)
+                .setAnimationStyle(R.style.popyuyin_animation)
+//                .setDimValue(0.2f)
+                .setFocusAndOutsideEnable(true)
+                .apply();
+        mCirclePop.showAtAnchorView(boss, YGravity.ALIGN_BOTTOM, XGravity.CENTER, 0, 0);
+        final WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.8f; //0.0-1.0
+        getWindow().setAttributes(lp);
+
+        //证件合并
+        ll5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SearchResultActivity.this, "请选择相应的证件图片", Toast.LENGTH_SHORT).show();
+                isSelectMode = 1;
+                tvTitle.setText("证件合并");
+                tvCancel.setVisibility(View.VISIBLE);
+                tvOk.setVisibility(View.VISIBLE);
+                mCirclePop.dismiss();
+               /* if (ContextCompat.checkSelfPermission(SearchResultActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(SearchResultActivity.this, new String[]{Manifest.permission.CAMERA}, 0x12);
+                    return;
+                }
+                CameraActivity.openCertificateCamera(SearchResultActivity.this, 0);*/
+            }
+        });
+
+        //新建归档
+        ll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSelectMode = 0;
+                tvTitle.setText("新建归档");
+                tvCancel.setVisibility(View.VISIBLE);
+                tvOk.setVisibility(View.VISIBLE);
+                mCirclePop.dismiss();
+                Toast.makeText(SearchResultActivity.this, "请选择要归档的文件", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        iv_xiala.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCirclePop.dismiss();
+            }
+        });
+
+        mCirclePop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                lp.alpha = 1; //0.0-1.0
+                getWindow().setAttributes(lp);
+            }
+        });
+    }
+
     @OnClick(R.id.tv_cancel)
     public void onViewClicked() {//取消选择文件的模式
         cancelselectMode();
-
     }
 
     private void cancelselectMode() {
         tvCancel.setVisibility(View.GONE);
-        isSelectMode = false;
+        tvOk.setVisibility(View.GONE);
+        tvTitle.setText("搜索结果");
+        isSelectMode = -1;
         adapter1.setCancelSelectMode();//取消选择文件的模式
         adapter2.setCancelSelectMode();
         adapter3.setCancelSelectMode();
@@ -385,60 +489,74 @@ public class SearchResultActivity extends AppCompatActivity {
         selectNum = 0;
     }
 
-    @OnClick({R.id.ll_back, R.id.iv_add, R.id.iv_more})
+    @OnClick({R.id.ll_back, R.id.tv_ok, R.id.iv_more, R.id.rl_shangla})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_back:
                 finish();
                 break;
-            case R.id.iv_add:
-                if (isSelectMode) {
-                    if (adapter1.getSelectPosition().size() != 0)
-                        for (int i = 0; i < adapter1.getSelectPosition().size(); i++) {
-                            int position = adapter1.getSelectPosition().get(i);
-                            addSelects.add(imgs.get(position));
-                        }
-                    if (adapter2.getSelectPosition().size() != 0)
-                        for (int i = 0; i < adapter2.getSelectPosition().size(); i++) {
-                            int position = adapter2.getSelectPosition().get(i);
-                            addSelects.add(videos.get(position));
-                        }
-                    if (adapter3.getSelectPosition().size() != 0)
-                        for (int i = 0; i < adapter3.getSelectPosition().size(); i++) {
-                            int position = adapter3.getSelectPosition().get(i);
-                            addSelects.add(docs.get(position));
-                        }
-                    if (adapter4.getSelectPosition().size() != 0)
-                        for (int i = 0; i < adapter4.getSelectPosition().size(); i++) {
-                            int position = adapter2.getSelectPosition().get(i);
-                            addSelects.add(musics.get(position));
-                        }
-                    if (adapter5.getSelectPosition().size() != 0)
-                        for (int i = 0; i < adapter5.getSelectPosition().size(); i++) {
-                            int position = adapter2.getSelectPosition().get(i);
-                            addSelects.add(qitas.get(position));
-                        }
-
-                    if (addSelects.size() == 0) {
-                        Toast.makeText(this, "请先选择文件后才能新建分类", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    Intent intent = new Intent(this, AddFenleiActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("data", (Serializable) addSelects);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    cancelselectMode();
-                } else {
-                    Toast.makeText(this, "请先选择文件后才能新建分类", Toast.LENGTH_SHORT).show();
-                }
-
+            case R.id.tv_ok:
+                opration();//根据不同的状态操作不同
                 break;
 
             case R.id.iv_more:
                 break;
+
+            case R.id.rl_shangla:
+                popTools();
+                break;
         }
+    }
+
+    private void opration() {
+        if (adapter1.getSelectPosition().size() != 0)
+            for (int i = 0; i < adapter1.getSelectPosition().size(); i++) {
+                int position = adapter1.getSelectPosition().get(i);
+                addSelects.add(imgs.get(position));
+            }
+        if (adapter2.getSelectPosition().size() != 0)
+            for (int i = 0; i < adapter2.getSelectPosition().size(); i++) {
+                int position = adapter2.getSelectPosition().get(i);
+                addSelects.add(videos.get(position));
+            }
+        if (adapter3.getSelectPosition().size() != 0)
+            for (int i = 0; i < adapter3.getSelectPosition().size(); i++) {
+                int position = adapter3.getSelectPosition().get(i);
+                addSelects.add(docs.get(position));
+            }
+        if (adapter4.getSelectPosition().size() != 0)
+            for (int i = 0; i < adapter4.getSelectPosition().size(); i++) {
+                int position = adapter2.getSelectPosition().get(i);
+                addSelects.add(musics.get(position));
+            }
+        if (adapter5.getSelectPosition().size() != 0)
+            for (int i = 0; i < adapter5.getSelectPosition().size(); i++) {
+                int position = adapter2.getSelectPosition().get(i);
+                addSelects.add(qitas.get(position));
+            }
+
+        if (addSelects.size() == 0) {
+            Toast.makeText(this, "请先选择文件后才能新建分类", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        switch (isSelectMode) {
+            case 0://新建归档
+                Intent intent = new Intent(this, AddFenleiActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("data", (Serializable) addSelects);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                cancelselectMode();
+                break;
+            case 1://证件合并
+                Toast.makeText(SearchResultActivity.this, "合并证件成功", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+
     }
 
     @OnClick({R.id.iv_paixv1, R.id.iv_paixv2})
@@ -542,7 +660,10 @@ public class SearchResultActivity extends AppCompatActivity {
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (verticalOffset == 0) {
                     rlBar.setBackgroundColor(Color.argb(0, 143, 193, 255));
-                    tvTitle.setVisibility(View.INVISIBLE);
+                    if (isSelectMode == -1)
+                        tvTitle.setVisibility(View.INVISIBLE);
+                    else
+                        tvTitle.setVisibility(View.VISIBLE);
                 } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     rlBar.setBackgroundColor(Color.argb(255, 143, 193, 255));
                     tvTitle.setVisibility(View.VISIBLE);

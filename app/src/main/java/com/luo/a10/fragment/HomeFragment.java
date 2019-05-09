@@ -1,9 +1,10 @@
 package com.luo.a10.fragment;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -11,40 +12,36 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.flyco.tablayout.SlidingTabLayout;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.RadarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.luo.a10.R;
 import com.luo.a10.activity.AllPhotoActivity;
 import com.luo.a10.activity.AllVideoActivity;
-import com.luo.a10.activity.FenleiActivity;
 import com.luo.a10.activity.MyAudioActivity;
 import com.luo.a10.activity.MyDocsActivity;
 import com.luo.a10.activity.SearchActivity;
-import com.luo.a10.activity.TestActivity;
+import com.luo.a10.activity.SearchResultActivity;
 import com.luo.a10.activity.TransmissionActivity;
-import com.luo.a10.eventBusObject.CancelEvent;
-import com.luo.a10.eventBusObject.OpenMenuEvent;
-import com.luo.a10.fragment.others.HomeDownloadFragment;
-import com.luo.a10.fragment.others.HomeSeeFragment;
-import com.luo.a10.fragment.others.HomeUpFragment;
 import com.luo.a10.utils.Constant;
 import com.luo.a10.utils.SpUtils;
 import com.luo.a10.utils.UIUtils;
 import com.luo.a10.view.MyRoundLayout;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class HomeFragment extends BaseFragment {
-    @BindView(R.id.tab_layout)
-    SlidingTabLayout tabLayout;
-    @BindView(R.id.vp)
-    ViewPager vp;
-    @BindView(R.id.ll)
-    LinearLayout ll;
+
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.my_round)
@@ -55,91 +52,89 @@ public class HomeFragment extends BaseFragment {
     LinearLayout llCar1;
     @BindView(R.id.iv_car1_back)
     ImageView ivCar1Back;
-    Unbinder unbinder;
+    @BindView(R.id.piechart)
+    PieChart piechart;
+    @BindView(R.id.radarChart)
+    RadarChart radarChart;
 
-    private String[] titles = new String[]{"查看", "上传", "下载"};
-    private ArrayList<Fragment> fragments;
-    private HomeSeeFragment fragment1;
-    private HomeUpFragment fragment2;
-    private HomeDownloadFragment fragment3;
+    private Typeface mTf;//声明字体库
+    private float[] data = {16.4f, 43.7f, 32.5f, 4.6f, 2.8f};
+
 
     @Override
     protected void initView() {
-        EventBus.getDefault().register(this);
-        fragments = new ArrayList<>();
-        fragment1 = new HomeSeeFragment();
-        fragment2 = new HomeUpFragment();
-        fragment3 = new HomeDownloadFragment();
-
-        fragments.add(fragment1);
-        fragments.add(fragment2);
-        fragments.add(fragment3);
-
-        vp.clearDisappearingChildren();
-        tabLayout.setViewPager(vp, titles, (FragmentActivity) mContext, fragments);
-
-        tvName.setText(SpUtils.getString(mContext,Constant.USERNAME));
+        tvName.setText(SpUtils.getString(mContext, Constant.USERNAME));
     }
 
-    //接收消息
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getMessageEvent(OpenMenuEvent flag) {
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.translate_select_head_out);
-        ll.startAnimation(animation);
-        myRound.startAnimation(animation);
-        ll.setVisibility(View.GONE);
-        myRound.setVisibility(View.GONE);
-        ViewGroup.LayoutParams params = vp.getLayoutParams();
-        ViewGroup.MarginLayoutParams marginParams = null;    //获取view的margin设置参数
-        if (params instanceof ViewGroup.MarginLayoutParams) {
-            marginParams = (ViewGroup.MarginLayoutParams) params;
-        } else {
-            //不存在时创建一个新的参数
-            marginParams = new ViewGroup.MarginLayoutParams(params);
-        }
-        //设置margin
-        marginParams.setMargins(0, UIUtils.dp2px(40), 0, UIUtils.dp2px(71));//120 - 49  49是底部导航栏的高度
-        vp.setLayoutParams(marginParams);
+    @Override
+    public void initData() {
+        initPieChart();//初始化饼状图
     }
 
-    //接收消息，点击取消的消息
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getMessageEvent1(CancelEvent s) {
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.translate_select_head_in);
-        ll.setVisibility(View.VISIBLE);
-        myRound.setVisibility(View.VISIBLE);
-        ll.startAnimation(animation);
-        myRound.startAnimation(animation);
+    private void initPieChart() {
+        mTf = Typeface.createFromAsset(mContext.getAssets(), "OpenSans-Regular.ttf");
+        // apply styling
+        piechart.setDescription("");
+        piechart.setHoleRadius(50f);//最内层的圆的半径
+        piechart.setTransparentCircleRadius(55f);//包裹内层圆的半径
+        piechart.setCenterText("6.24GB");
+        piechart.setCenterTextTypeface(mTf);
+        piechart.setCenterTextSize(10f);
+        //是否使用百分比。true:各部分的百分比的和是100%。
+        piechart.setUsePercentValues(false);
+        piechart.setDrawSliceText(false);
+        piechart.setCenterTextColor(UIUtils.getColor(R.color.system_blue1));
 
-        ViewGroup.LayoutParams params = vp.getLayoutParams();
-        ViewGroup.MarginLayoutParams marginParams = null;    //获取view的margin设置参数
-        if (params instanceof ViewGroup.MarginLayoutParams) {
-            marginParams = (ViewGroup.MarginLayoutParams) params;
-        } else {
-            //不存在时创建一个新的参数
-            marginParams = new ViewGroup.MarginLayoutParams(params);
-        }
-        //设置margin
-        marginParams.setMargins(0, 0, 0, 0);
-        vp.setLayoutParams(marginParams);
-
+        PieData pieData = getDataPie();
+        pieData.setDrawValues(false);
+        pieData.setValueTypeface(mTf);
+        pieData.setValueTextSize(7f);
+        pieData.setValueTextColor(UIUtils.getColor(R.color.system_gray));
+        // set data
+        piechart.setData(pieData);
+        //获取右上角的描述结构的对象
+        Legend l = piechart.getLegend();
+        l.setTextSize(9f);
+        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+        l.setYEntrySpace(2f);//相邻的entry在y轴上的间距
+        l.setYOffset(0f);//第一个entry距离最顶端的间距
+        l.setXEntrySpace(10f);
+        l.setTextColor(UIUtils.getColor(R.color.system_gray));
+        piechart.animateXY(1500, 1500);
     }
 
+    private PieData getDataPie() {
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+        entries.add(new Entry(16.4f, 0));
+        entries.add(new Entry(43.7f, 1));
+        entries.add(new Entry(32.5f, 2));
+        entries.add(new Entry(4.6f, 3));
+        entries.add(new Entry(2.8f, 4));
+        PieDataSet d = new PieDataSet(entries, "");
+        d.setSliceSpace(1f);//两个饼图之间的间隔
+        //设置颜色
+        int[] colors = {
+                Color.rgb(130, 212, 253), Color.rgb(253, 244, 108), Color.rgb(212, 151, 255),
+                Color.rgb(97, 215, 123), Color.rgb(248, 181, 81)
+        };
+        d.setColors(colors);
+        ArrayList<String> q = new ArrayList<String>();
+        q.add("文档  " + data[0] + "%  " + "1.02GB");
+        q.add("图片  " + data[1] + "%  " + "2.73GB");
+        q.add("视频  " + data[2] + "%  " + "2.03GB");
+        q.add("音频  " + data[3] + "%  " + "0.27GB");
+        q.add("其他  " + data[4] + "%  " + "0.17GB");
+        PieData cd = new PieData(q, d);
+        return cd;
+    }
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        EventBus.getDefault().unregister(this);
-        unbinder.unbind();
-    }
 
-
-    @OnClick({R.id.iv_car_next, R.id.ll_car1, R.id.fab})
+    @OnClick({R.id.iv_car_next, R.id.ll_car1})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_car_next:
@@ -154,9 +149,9 @@ public class HomeFragment extends BaseFragment {
                 llCar.startAnimation(animation1);
                 llCar1.setVisibility(View.GONE);
                 break;
-            case R.id.fab:
-                startActivity(new Intent(mContext, FenleiActivity.class));
-                break;
+//            case R.id.fab:
+//                startActivity(new Intent(mContext, FenleiActivity.class));
+//                break;
         }
     }
 
@@ -192,11 +187,13 @@ public class HomeFragment extends BaseFragment {
                 startActivity(new Intent(mContext, AllPhotoActivity.class));
                 break;
             case R.id.ll3:
-                startActivity(new Intent(mContext, MyAudioActivity.class));
+//                startActivity(new Intent(mContext, MyAudioActivity.class));
+                startActivity(new Intent(mContext, SearchResultActivity.class));
                 break;
             case R.id.ll4:
                 startActivity(new Intent(mContext, AllVideoActivity.class));
                 break;
         }
     }
+
 }

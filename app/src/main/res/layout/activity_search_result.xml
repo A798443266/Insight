@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
+    android:id="@+id/boss"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -107,26 +108,30 @@
 
                     <TextView
                         android:id="@+id/tv_cancel"
-                        android:layout_width="70dp"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="取消选择"
+                        android:text="取消"
                         android:gravity="center"
-                        android:visibility="gone"
                         android:textStyle="bold"
+                        android:visibility="gone"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@+id/iv_add"
+                        android:layout_toLeftOf="@+id/tv_ok"
                         android:textColor="@color/system_white"
                         android:textSize="14sp" />
 
-                    <ImageView
-                        android:id="@+id/iv_add"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                    <TextView
+                        android:id="@+id/tv_ok"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="确定"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:visibility="gone"
                         android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
                         android:layout_toLeftOf="@+id/iv_more"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/icon_add_white" />
+                        android:textColor="@color/system_white"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/iv_more"
@@ -636,5 +641,19 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+
+    <RelativeLayout
+        android:id="@+id/rl_shangla"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal|bottom">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/icon_shangla"/>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

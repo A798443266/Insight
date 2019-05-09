@@ -84,7 +84,7 @@ public class YuyinRecordAdapter extends BaseAdapter {
             if(mediaPlayer != null) {
                 Log.e("TAG", "更新");
                 holder.seekbar.setProgress(mediaPlayer.getCurrentPosition());
-                holder.tv_current.setText(UIUtils.StringTime(mediaPlayer.getCurrentPosition()));
+                holder.tv_current.setText(UIUtils.stringForTime(mediaPlayer.getCurrentPosition()));
             }
         }
 
