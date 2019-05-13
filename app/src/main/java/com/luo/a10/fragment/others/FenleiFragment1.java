@@ -22,6 +22,7 @@ import com.luo.a10.utils.SpUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,8 +50,8 @@ public class FenleiFragment1 extends BaseFragment {
     @Override
     public void initData() {
 
-        data = SpUtils.getString(mContext,Constant.save_guidang1);
-        if(!TextUtils.isEmpty(data)){
+        data = SpUtils.getString(mContext, Constant.save_guidang1);
+        if (!TextUtils.isEmpty(data)) {
             datas = JsonUtils.parseFenlei(data);
         }
 
@@ -64,7 +65,7 @@ public class FenleiFragment1 extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
-                SpUtils.putString(mContext,Constant.save_guidang1,response);
+                SpUtils.putString(mContext, Constant.save_guidang1, response);
                 datas = JsonUtils.parseFenlei(response);
                 show();
             }
@@ -72,14 +73,15 @@ public class FenleiFragment1 extends BaseFragment {
     }
 
     private void show() {
-        llLoad.setVisibility(View.GONE);
+        if (llLoad != null)
+            llLoad.setVisibility(View.GONE);
         if (datas != null && datas.size() > 0) {
             adapter = new FenleiFragmentAdapter(mContext, datas);
             gv.setAdapter(adapter);
             gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    getDataFromNet(datas.get(position).getId(),position);
+                    getDataFromNet(datas.get(position).getId(), position);
                 }
             });
         } else {
@@ -98,7 +100,7 @@ public class FenleiFragment1 extends BaseFragment {
             public void onResponse(String response, int id) {
                 Intent intent = new Intent(mContext, FenleiDetailsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("guidang",datas.get(position));
+                bundle.putSerializable("guidang", datas.get(position));
                 intent.putExtras(bundle);
                 intent.putExtra("result", response);
                 startActivity(intent);

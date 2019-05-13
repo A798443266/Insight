@@ -44,7 +44,6 @@
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.DocSeeActivity" />
 
         <service android:name=".service.PlayMusicService">
@@ -67,7 +66,6 @@
         <activity android:name=".activity.PhotoDetailsActivity" />
         <activity android:name=".activity.TransmissionActivity" />
         <activity android:name=".activity.FenleiActivity" />
-        <activity android:name=".activity.YuyinSujiActivity" />
         <activity android:name=".activity.FenleiDetailsActivity" />
         <activity android:name=".activity.SearchResultActivity" />
         <activity android:name=".activity.AddFenleiActivity" />

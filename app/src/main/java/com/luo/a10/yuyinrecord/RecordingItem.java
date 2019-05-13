@@ -43,7 +43,7 @@ public class RecordingItem implements Serializable {
     }
 
     public void setRiqi(long mRiqi) {
-        mRiqi = mRiqi;
+        this.mRiqi = mRiqi;
     }
 
     public int getId() {

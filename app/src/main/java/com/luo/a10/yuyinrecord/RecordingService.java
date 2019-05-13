@@ -48,7 +48,6 @@ public class RecordingService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         startRecording();
-        Log.e("TAG", "开始录音");
         return START_STICKY;
     }
 
@@ -92,7 +91,6 @@ public class RecordingService extends Service {
             mFilePath = Environment.getExternalStorageDirectory().getAbsolutePath();
             mFilePath += "/SoundRecorder/" + mFileName;
             f = new File(mFilePath);
-            Log.e("TAG", "创建好文件");
         } while (f.exists() && !f.isDirectory());
     }
 

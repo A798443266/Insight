@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carlos.voiceline.mylibrary.VoiceLineView;
 import com.luo.a10.R;
@@ -150,6 +151,11 @@ public class YuyinDetailsActivity extends AppCompatActivity {
     public void onViewClicked() {
         loading.setVisibility(View.VISIBLE);
         handler.sendEmptyMessageDelayed(3, 1500);
+    }
+
+    @OnClick(R.id.ll_lingcun)
+    public void onViewClicked1() {
+        Toast.makeText(this,"导入成功,可在我的笔记中查看",Toast.LENGTH_SHORT).show();
     }
 
     class MyOnCompletionListener implements MediaPlayer.OnCompletionListener {

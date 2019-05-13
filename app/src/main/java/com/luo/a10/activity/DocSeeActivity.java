@@ -224,8 +224,8 @@ public class DocSeeActivity extends AppCompatActivity implements TbsReaderView.R
         et_input = view.findViewById(R.id.et_input);
         voicLine = view.findViewById(R.id.voicLine);
         LinearLayout ll_pizhu = view.findViewById(R.id.ll_pizhu);
-        data.add("频繁项集市数据集中发生次数不小于用户定义阈值的项集。");
-        data.add("对于频繁项集来说，其类型变化界限随着支持度的增大而增大。");
+        data.add("远期利率协议是一种远期合约。");
+        data.add("本票是指由出票人签发的，承诺自己在见票时无条件支付确定的金额给收款人或者持票人的票据。");
 
         speechRecognizer = SpeechRecognizer.createRecognizer(this, null);
         final PiZhuAdapter adapter = new PiZhuAdapter(this, data);

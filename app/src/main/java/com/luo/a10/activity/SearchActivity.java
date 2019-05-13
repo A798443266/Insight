@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -21,7 +19,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.carlos.voiceline.mylibrary.VoiceLineView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.iflytek.cloud.ErrorCode;
@@ -35,7 +32,9 @@ import com.jayfang.dropdownmenu.DropDownMenu;
 import com.jayfang.dropdownmenu.OnMenuSelectedListener;
 import com.luo.a10.R;
 import com.luo.a10.adapter.SearchRecordAdapter;
+import com.luo.a10.adapter.change.FolderAdapter;
 import com.luo.a10.bean.RecordInfo;
+import com.luo.a10.bean.change.FolderAndDoc;
 import com.luo.a10.model.Model;
 import com.luo.a10.utils.Constant;
 import com.luo.a10.utils.JsonParser;
@@ -76,15 +75,23 @@ public class SearchActivity extends AppCompatActivity {
     RelativeLayout ll;
     @BindView(R.id.ll_load)
     LinearLayout llLoad;
+    @BindView(R.id.ll_history)
+    LinearLayout llHistory;
+    @BindView(R.id.lv_folder)
+    ListView lvFolder;
+
+
 
     // 用HashMap存储听写结果
     private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
     private SpeechRecognizer speechRecognizer;
-    private String[] types = new String[]{"word", "pdf", "图片", "视频", "音频", "zip", "其他"};
-    private String[] titles = new String[]{"路径搜索", "内容搜索", "关键词搜索", "标签搜索", "名称搜索", "不限"};
+    private String[] types = new String[]{"word", "pdf", "图片", "视频", "音频", "其他", "全部"};
+    private String[] titles = new String[]{"路径搜索", "内容搜索", "关键词搜索", "标签搜索", "名称搜索", "全部"};
     private List<String[]> list1 = new ArrayList<>();
     private List<String[]> list2 = new ArrayList<>();
     private SearchRecordAdapter adapter;
+    private List<FolderAndDoc> folders; //路径搜索的文件夹
+    private FolderAdapter adapter1;
     private List<RecordInfo> records;
     private int way = 6;//搜索关键
     VoiceLineView voicLine;
@@ -197,14 +204,14 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             //Menu展开的list点击事件  RowIndex：list的索引  ColumnIndex：menu的索引
             public void onSelected(View listview, int RowIndex, int ColumnIndex) {
-                way = RowIndex+1;
-                if(RowIndex == 3)
+                way = RowIndex + 1;
+                if (RowIndex == 3)
                     way = 3;
             }
         });
     }
 
-    @OnClick({R.id.iv_yuyin, R.id.icon_search, R.id.tv_clear,R.id.rl_back})
+    @OnClick({R.id.iv_yuyin, R.id.icon_search, R.id.tv_clear, R.id.rl_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_yuyin:
@@ -234,14 +241,14 @@ public class SearchActivity extends AppCompatActivity {
         llLoad.setVisibility(View.VISIBLE);
 
         OkHttpUtils.post().url(Constant.SEARCH)
-                .addParams("way",way+"")
-                .addParams("text",content)
+                .addParams("way", way + "")
+                .addParams("text", content)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         llLoad.setVisibility(View.GONE);
-                        Toast.makeText(SearchActivity.this,"搜索失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchActivity.this, "搜索失败", Toast.LENGTH_SHORT).show();
                         //搜索记录存入本地数据库
                         Model.getInstance().getDbDao().addRecord("1", content);
                         //重新刷新搜索记录
@@ -255,25 +262,51 @@ public class SearchActivity extends AppCompatActivity {
                 });
 
 
-
     }
 
     private void show(String response) {
-        if(TextUtils.isEmpty(response)){
+        if (TextUtils.isEmpty(response)) {
+            Toast.makeText(this,"找不到对应的内容",Toast.LENGTH_SHORT).show();
             return;
         }
         llLoad.setVisibility(View.GONE);
+        if(way == 1){//路径搜索
+            folders = JsonUtils.parseSearchByFolder(response);
+            if(folders == null || folders.size() == 0){
+                Toast.makeText(this,"找不到对应的内容",Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        Intent intent = new Intent(this,SearchResultActivity.class);
-        intent.putExtra("result",response);
-        startActivity(intent);
-        //搜索记录存入本地数据库
-        Model.getInstance().getDbDao().addRecord("1", content);
-        //重新刷新搜索记录
-        getRecord();
-        finish();
+            llHistory.setVisibility(View.GONE);
+            lvFolder.setVisibility(View.VISIBLE);
+            adapter1 = new FolderAdapter(folders,this);
+            lvFolder.setAdapter(adapter1);
+            lvFolder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    FolderAndDoc folderAndDoc = folders.get(position);
+                    if (folderAndDoc.getCategory() == -1) {//文件夹
+                        Intent intent = new Intent(SearchActivity.this, OpenFolderActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("folder", folderAndDoc);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }
+            });
+
+        }else{
+            Intent intent = new Intent(this, SearchResultActivity.class);
+            intent.putExtra("result", response);
+            startActivity(intent);
+            //搜索记录存入本地数据库
+            Model.getInstance().getDbDao().addRecord("1", content);
+            //重新刷新搜索记录
+            getRecord();
+//            finish();
+        }
+
     }
-
 
 
     private RecognizerDialog mDialog;

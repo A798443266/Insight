@@ -91,6 +91,7 @@ public class DbDao {
             record.setName(cursor.getString(cursor.getColumnIndex("name")));
             record.setTime(cursor.getLong(cursor.getColumnIndex("time")));
             record.setRiqi(cursor.getLong(cursor.getColumnIndex("riqi")));
+
             records.add(record);
         }
 

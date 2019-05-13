@@ -61,6 +61,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="IMG_20190409.JPG"
@@ -73,6 +74,7 @@
                 android:layout_marginTop="3dp">
 
                 <TextView
+                    android:id="@+id/tv_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.25MB"
@@ -110,6 +112,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2019年4月8日"
@@ -198,7 +201,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="我的图片 / 素材图片 / 街景 / IMG_20190409.JPG"
+            android:text="我的图片 / 素材图片 /"
             android:textColor="#333"
             android:textSize="14sp" />
 
@@ -250,7 +253,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="汽车  街道  夜晚"
+            android:text="景色   美丽"
             android:textColor="#333"
             android:textSize="14sp" />
 
@@ -282,7 +285,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="宇宙"
+                android:text="景物"
                 android:textColor="#5098fa"
                 android:textSize="11sp" />
 
@@ -291,6 +294,7 @@
                 android:layout_height="8dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/icon_cha_blue" />
         </LinearLayout>
 
@@ -306,7 +310,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="紫色"
+                android:text="蓝色"
                 android:textColor="#5098fa"
                 android:textSize="11sp" />
 
@@ -315,6 +319,7 @@
                 android:layout_height="8dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/icon_cha_blue" />
         </LinearLayout>
 
@@ -365,7 +370,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="夜晚街景，可做背景。"
+            android:text="美丽景色，可做背景。"
             android:textColor="#5098fa"
             android:textSize="14sp" />
 

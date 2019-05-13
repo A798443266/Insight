@@ -97,6 +97,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/iv_guanzhu"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:background="@drawable/icon_music2" />

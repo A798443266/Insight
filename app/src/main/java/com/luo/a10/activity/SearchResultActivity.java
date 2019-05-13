@@ -1,9 +1,7 @@
 package com.luo.a10.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -11,8 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -21,13 +17,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -43,7 +39,6 @@ import com.luo.a10.adapter.fenlei.PhotoLvAdapter;
 import com.luo.a10.adapter.fenlei.QitaAdapter;
 import com.luo.a10.adapter.fenlei.VideoAdapter;
 import com.luo.a10.bean.change.FolderAndDoc;
-import com.luo.a10.camera.CameraActivity;
 import com.luo.a10.utils.JsonUtils;
 import com.luo.a10.utils.UIUtils;
 import com.luo.a10.view.MyGridView;
@@ -51,11 +46,9 @@ import com.luo.a10.view.MyListView;
 import com.zyyoona7.popup.EasyPopup;
 import com.zyyoona7.popup.XGravity;
 import com.zyyoona7.popup.YGravity;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -414,7 +407,6 @@ public class SearchResultActivity extends AppCompatActivity {
                 .setHeight(UIUtils.dp2px(260))
                 .setBackgroundDimEnable(false)
                 .setAnimationStyle(R.style.popyuyin_animation)
-//                .setDimValue(0.2f)
                 .setFocusAndOutsideEnable(true)
                 .apply();
         mCirclePop.showAtAnchorView(boss, YGravity.ALIGN_BOTTOM, XGravity.CENTER, 0, 0);
@@ -432,11 +424,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 tvCancel.setVisibility(View.VISIBLE);
                 tvOk.setVisibility(View.VISIBLE);
                 mCirclePop.dismiss();
-               /* if (ContextCompat.checkSelfPermission(SearchResultActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(SearchResultActivity.this, new String[]{Manifest.permission.CAMERA}, 0x12);
-                    return;
-                }
-                CameraActivity.openCertificateCamera(SearchResultActivity.this, 0);*/
+
             }
         });
 
@@ -550,13 +538,69 @@ public class SearchResultActivity extends AppCompatActivity {
                 cancelselectMode();
                 break;
             case 1://证件合并
-                Toast.makeText(SearchResultActivity.this, "合并证件成功", Toast.LENGTH_SHORT).show();
+                popZhengjian();
+                cancelselectMode();
                 break;
             default:
                 break;
         }
 
 
+    }
+
+    private void popZhengjian() {
+        if (addSelects == null || addSelects.size() == 0) {
+            Toast.makeText(SearchResultActivity.this, "请先选择要合并的图片", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        for (FolderAndDoc doc : addSelects) {
+            if (doc.getCategory() != 2) {
+                Toast.makeText(SearchResultActivity.this, "只能选择图片文件", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        View view = View.inflate(SearchResultActivity.this, R.layout.card_pop, null);
+        ImageView iv1 = view.findViewById(R.id.iv1);
+        ImageView iv2 = view.findViewById(R.id.iv2);
+        Button btn_save = view.findViewById(R.id.btn_save);
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
+
+        if (docs.size() == 1) {//只选了一张图片
+            iv1.setVisibility(View.VISIBLE);
+            Glide.with(SearchResultActivity.this).load(addSelects.get(0).getLink()).error(R.drawable.city1).into(iv1);
+        } else {//大于两张图片只合并两张
+            iv1.setVisibility(View.VISIBLE);
+            iv2.setVisibility(View.VISIBLE);
+            Glide.with(SearchResultActivity.this).load(addSelects.get(0).getLink()).error(R.drawable.city1).into(iv1);
+            Glide.with(SearchResultActivity.this).load(addSelects.get(1).getLink()).error(R.drawable.city1).into(iv2);
+        }
+
+        mCirclePop = new EasyPopup(SearchResultActivity.this)
+                .setContentView(view)
+                .setWidth(UIUtils.dp2px(320))
+                .setHeight(UIUtils.dp2px(520))
+                .setBackgroundDimEnable(true)
+                .setAnimationStyle(R.style.popyuyin_animation)
+                .setDimValue(0.4f)
+                .setFocusAndOutsideEnable(true)
+                .apply();
+        mCirclePop.showAtAnchorView(boss, YGravity.CENTER, XGravity.CENTER, 0, 0);
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCirclePop.dismiss();
+            }
+        });
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCirclePop.dismiss();
+                Toast.makeText(SearchResultActivity.this, "保存成功，可在我的证件照中查看", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @OnClick({R.id.iv_paixv1, R.id.iv_paixv2})

@@ -164,7 +164,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="滑动   时间敏感   数据挖掘"
+                android:text="银行   知识"
                 android:textColor="@color/system_gray"
                 android:textSize="14sp" />
 
@@ -193,7 +193,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="数据流"
+                    android:text="支票"
                     android:textColor="#5098fa"
                     android:paddingRight="8dp"
                     android:background="@drawable/tv_biaoqian_bg"
@@ -201,7 +201,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="敏感"
+                    android:text="银行"
                     android:layout_marginRight="8dp"
                     android:paddingRight="8dp"
                     android:background="@drawable/tv_biaoqian_bg"

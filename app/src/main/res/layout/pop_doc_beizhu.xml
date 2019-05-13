@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:text="设计"
+                    android:text="银行"
                     android:layout_gravity="center_vertical"
                     android:textColor="#5098fa"
                     android:textSize="12sp" />
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:text="平面设计"
+                    android:text="支票"
                     android:layout_gravity="center_vertical"
                     android:textColor="#5098fa"
                     android:textSize="12sp" />
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-                    android:text="理论"
+                    android:text="系统性"
                     android:layout_gravity="center_vertical"
                     android:textColor="#5098fa"
                     android:textSize="12sp" />

@@ -23,6 +23,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.List;
 import butterknife.BindView;
+import butterknife.Unbinder;
 import okhttp3.Call;
 
 public class CollectFragment1 extends BaseFragment {
@@ -33,6 +34,7 @@ public class CollectFragment1 extends BaseFragment {
     TextView tvNo;
     @BindView(R.id.ll_load)
     LinearLayout llLoad;
+    Unbinder unbinder;
 
     private FolderAdapter adapter;
     private List<FolderAndDoc> datas;
@@ -51,7 +53,7 @@ public class CollectFragment1 extends BaseFragment {
             @Override
             public void onError(Call call, Exception e, int id) {
                 show();
-                Toast.makeText(mContext,"网络出错了",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "网络出错了", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -63,41 +65,42 @@ public class CollectFragment1 extends BaseFragment {
     }
 
     private void show() {
-        llLoad.setVisibility(View.GONE);
-        if(datas != null && datas.size() > 0){
+        if (llLoad != null)
+            llLoad.setVisibility(View.GONE);
+        if (datas != null && datas.size() > 0) {
             tvNo.setVisibility(View.GONE);
-            adapter = new FolderAdapter(datas,mContext);
+            adapter = new FolderAdapter(datas, mContext);
             lv.setAdapter(adapter);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     FolderAndDoc folderAndDoc = datas.get(position);
-                    if(folderAndDoc.getCategory() == -1){//文件夹
-                        Intent intent  = new Intent(mContext,OpenFolderActivity.class);
+                    if (folderAndDoc.getCategory() == -1) {//文件夹
+                        Intent intent = new Intent(mContext, OpenFolderActivity.class);
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("folder",folderAndDoc);
+                        bundle.putSerializable("folder", folderAndDoc);
                         intent.putExtras(bundle);
                         startActivity(intent);
 
-                    }else if(folderAndDoc.getCategory() == 2){//图片
-                        Intent intent  = new Intent(mContext,BigPhotoActivity.class);
+                    } else if (folderAndDoc.getCategory() == 2) {//图片
+                        Intent intent = new Intent(mContext, BigPhotoActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("path", folderAndDoc);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    }else if(folderAndDoc.getCategory() == 3){//音频
+                    } else if (folderAndDoc.getCategory() == 3) {//音频
                         Intent intent = new Intent(mContext, MusicActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("music", folderAndDoc);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    }else if(folderAndDoc.getCategory() == 4){//视频
+                    } else if (folderAndDoc.getCategory() == 4) {//视频
                         Intent intent = new Intent(mContext, PlayVideoActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("video", folderAndDoc);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    }else{//文档
+                    } else {//文档
                         Intent intent = new Intent(mContext, DocSeeActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("doc", folderAndDoc);
@@ -106,15 +109,9 @@ public class CollectFragment1 extends BaseFragment {
                     }
                 }
             });
-        }else {
+        } else {
             tvNo.setVisibility(View.VISIBLE);
         }
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
     @Override

@@ -3,7 +3,9 @@ package com.luo.a10.fragment.others;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -23,6 +25,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 
 public class FenleiFragment2 extends BaseFragment {
@@ -64,14 +68,15 @@ public class FenleiFragment2 extends BaseFragment {
     }
 
     private void show() {
-        llLoad.setVisibility(View.GONE);
+        if (llLoad != null)
+            llLoad.setVisibility(View.GONE);
         if (datas != null && datas.size() > 0) {
             adapter = new FenleiFragmentAdapter(mContext, datas);
             gv.setAdapter(adapter);
             gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    getDataFromNet(datas.get(position).getId(),position);
+                    getDataFromNet(datas.get(position).getId(), position);
                 }
             });
         } else {
@@ -79,7 +84,7 @@ public class FenleiFragment2 extends BaseFragment {
         }
     }
 
-    private void getDataFromNet(int id,final int position) {
+    private void getDataFromNet(int id, final int position) {
         OkHttpUtils.get().url(Constant.Fenelei + id).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -91,7 +96,7 @@ public class FenleiFragment2 extends BaseFragment {
                 Intent intent = new Intent(mContext, FenleiDetailsActivity.class);
                 intent.putExtra("result", response);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("guidang",datas.get(position));
+                bundle.putSerializable("guidang", datas.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

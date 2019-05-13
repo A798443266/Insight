@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,8 +67,6 @@ public class MusicActivity extends AppCompatActivity {
     TextView tvTag2;
 
     private static final int PROGRESS = 1;
-    @BindView(R.id.loading)
-    AVLoadingIndicatorView loading;
     private IPlayMusicService Iservice;
     private String path;
     private boolean isNew;//判断是从哪里进来的
@@ -124,7 +123,7 @@ public class MusicActivity extends AppCompatActivity {
         initView();
         Intent intent = new Intent(this, PlayMusicService.class);
         intent.setAction("MUSIC");
-        intent.putExtra("name",music.getName());
+        intent.putExtra("name", music.getName());
         bindService(intent, conn, Context.BIND_AUTO_CREATE);//绑定服务
         startService(intent);//不至于实例化多个服务
     }
@@ -134,7 +133,8 @@ public class MusicActivity extends AppCompatActivity {
         tvSongname.setText(music.getName());
         tvSize.setText(Formatter.formatFileSize(this, music.getSize()));
         tvTitle.setText(music.getName());
-        tvTime.setText(UIUtils.StringTime(Long.parseLong(music.getTime())));
+        if (!TextUtils.isEmpty(music.getTime()))
+            tvTime.setText(UIUtils.StringTime(Long.parseLong(music.getTime())));
     }
 
 

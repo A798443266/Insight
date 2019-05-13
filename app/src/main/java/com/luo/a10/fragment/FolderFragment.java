@@ -27,7 +27,6 @@ import com.luo.a10.activity.OpenFolderActivity;
 import com.luo.a10.activity.PlayVideoActivity;
 import com.luo.a10.activity.SearchActivity;
 import com.luo.a10.activity.TransmissionActivity;
-import com.luo.a10.adapter.DocAdapter;
 import com.luo.a10.adapter.change.FolderAdapter;
 import com.luo.a10.bean.change.FolderAndDoc;
 import com.luo.a10.eventBusObject.CancelEvent;
@@ -35,7 +34,6 @@ import com.luo.a10.eventBusObject.DocsEvent;
 import com.luo.a10.eventBusObject.OpenMenuEvent;
 import com.luo.a10.eventBusObject.RefleshFolder;
 import com.luo.a10.eventBusObject.SelectAllEvent;
-import com.luo.a10.model.Model;
 import com.luo.a10.utils.Constant;
 import com.luo.a10.utils.JsonUtils;
 import com.luo.a10.utils.SpUtils;
@@ -141,7 +139,7 @@ public class FolderFragment extends BaseFragment {
                         if (cbState.get(i))
                             docs1.add(docs.get(i));
                     }
-//                    EventBus.getDefault().post(new DocsEvent(docs1));
+                    EventBus.getDefault().post(new DocsEvent(docs1));
                 } else {
                     FolderAndDoc folderAndDoc = docs.get(position);
                     if (folderAndDoc.getCategory() == -1) {//文件夹

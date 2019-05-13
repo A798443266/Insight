@@ -134,13 +134,13 @@ public class FolderAdapter extends BaseAdapter {
         holder.cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onSelectDotClick != null) {
-                    onSelectDotClick.onDotClick(position, holder.cb);
-                }
                 if (holder.cb.isChecked()) {
                     cbState.put(position, true);
                 } else {
                     cbState.put(position, false);
+                }
+                if (onSelectDotClick != null) {
+                    onSelectDotClick.onDotClick(position, holder.cb);
                 }
 
             }

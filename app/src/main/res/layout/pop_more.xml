@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="260dp"
+    android:layout_height="280dp"
     android:background="@drawable/pop_more_bg1"
     android:orientation="vertical">
 
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:text="证件拍照"
+                android:text="证件合并"
                 android:textColor="@color/system_black"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -166,6 +166,30 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll7"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/pop_more_bg">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_more3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="证件拍照"
+            android:textColor="@color/system_black"
+            android:textSize="13sp" />
     </LinearLayout>
 
 

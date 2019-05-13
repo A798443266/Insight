@@ -261,7 +261,6 @@ public class MainActivity extends FragmentActivity {
         mMoreWindow.showMoreWindow(llMainUpdate, 100);
     }
 
-
     private List<FolderAndDoc> docs;//接收传递过来的文件，可对其操作
 
     //接收消息
@@ -290,7 +289,7 @@ public class MainActivity extends FragmentActivity {
     public void getMoreWindow(MoreWindowEvent m) {
         switch (m.getType()) {
             case 1:
-               showMore();
+                showMore();
                 break;
             case 2:
                 View view = View.inflate(this, R.layout.pop_new_folder, null);
@@ -388,7 +387,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-//Activity回显结果=======================================================================================================
+    //Activity回显结果=======================================================================================================
     //收到选择的文件列表，去上传
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -429,7 +428,7 @@ public class MainActivity extends FragmentActivity {
                 if (type == 0) {
                     path = data.getStringExtra("path");//正面
                     path1 = data.getStringExtra("path1");//反面
-                }else{
+                } else {
                     path = data.getStringExtra("path");//正面
                 }
             }
@@ -440,32 +439,32 @@ public class MainActivity extends FragmentActivity {
             Button btn_save = view.findViewById(R.id.btn_save);
             Button btn_cancel = view.findViewById(R.id.btn_cancel);
 
-            if(!TextUtils.isEmpty(path)){
+            if (!TextUtils.isEmpty(path)) {
                 FileInputStream fis = null;
                 try {
                     iv1.setVisibility(View.VISIBLE);
                     fis = new FileInputStream(path);
-                    Bitmap bitmap  = BitmapFactory.decodeStream(fis);
-                    bitmap = UIUtils.rotateImage(bitmap,-90);
+                    Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                    bitmap = UIUtils.rotateImage(bitmap, -90);
 
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                    byte[] bytes=baos.toByteArray();
+                    byte[] bytes = baos.toByteArray();
                     Glide.with(this).load(bytes).error(R.drawable.city1).into(iv1);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
             }
-            if(!TextUtils.isEmpty(path1)){
+            if (!TextUtils.isEmpty(path1)) {
                 FileInputStream fis = null;
                 try {
                     iv2.setVisibility(View.VISIBLE);
                     fis = new FileInputStream(path1);
-                    Bitmap bitmap  = BitmapFactory.decodeStream(fis);
-                    bitmap = UIUtils.rotateImage(bitmap,-90);
+                    Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                    bitmap = UIUtils.rotateImage(bitmap, -90);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                    byte[] bytes=baos.toByteArray();
+                    byte[] bytes = baos.toByteArray();
                     Glide.with(this).load(bytes).error(R.drawable.city1).into(iv2);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -494,7 +493,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View v) {
                     mCirclePop.dismiss();
-                    Toast.makeText(MainActivity.this,"保存成功，可在我的证件照中查看",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "保存成功，可在我的证件照中查看", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -508,25 +507,88 @@ public class MainActivity extends FragmentActivity {
     public void showMore() {//收到打开从下打开更多pop的请求
         View view = View.inflate(this, R.layout.pop_more, null);
         LinearLayout ll5 = view.findViewById(R.id.ll5);
+        LinearLayout ll7 = view.findViewById(R.id.ll7);
         mCirclePop = new EasyPopup(this)
                 .setContentView(view)
                 .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
-                .setHeight(UIUtils.dp2px(260))
+                .setHeight(UIUtils.dp2px(280))
                 .setBackgroundDimEnable(true)
                 .setAnimationStyle(R.style.popyuyin_animation)
                 .setDimValue(0.4f)
                 .setFocusAndOutsideEnable(true)
                 .apply();
         mCirclePop.showAtAnchorView(rlBoss, YGravity.ALIGN_BOTTOM, XGravity.CENTER, 0, 0);
-        ll5.setOnClickListener(new View.OnClickListener() {
+
+        //证件拍照
+        ll7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCirclePop.dismiss();
-                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 0x12);
                     return;
                 }
                 CameraActivity.openCertificateCamera(MainActivity.this, 0);
+            }
+        });
+
+        //证件合并
+        ll5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCirclePop.dismiss();
+                if(docs == null || docs.size() == 0){
+                    Toast.makeText(MainActivity.this, "请先选择要合并的图片", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                for(FolderAndDoc doc: docs){
+                    if(doc.getCategory() != 2){
+                        Toast.makeText(MainActivity.this,"只能选择图片文件",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                View view = View.inflate(MainActivity.this, R.layout.card_pop, null);
+                ImageView iv1 = view.findViewById(R.id.iv1);
+                ImageView iv2 = view.findViewById(R.id.iv2);
+                Button btn_save = view.findViewById(R.id.btn_save);
+                Button btn_cancel = view.findViewById(R.id.btn_cancel);
+
+                if(docs.size() == 1){//只选了一张图片
+                    iv1.setVisibility(View.VISIBLE);
+                    Glide.with(MainActivity.this).load(docs.get(0).getLink()).error(R.drawable.city1).into(iv1);
+                }else{//大于两张图片只合并两张
+                    iv1.setVisibility(View.VISIBLE);
+                    iv2.setVisibility(View.VISIBLE);
+                    Glide.with(MainActivity.this).load(docs.get(0).getLink()).error(R.drawable.city1).into(iv1);
+                    Glide.with(MainActivity.this).load(docs.get(1).getLink()).error(R.drawable.city1).into(iv2);
+                }
+
+                mCirclePop = new EasyPopup(MainActivity.this)
+                        .setContentView(view)
+                        .setWidth(UIUtils.dp2px(320))
+                        .setHeight(UIUtils.dp2px(520))
+                        .setBackgroundDimEnable(true)
+                        .setAnimationStyle(R.style.popyuyin_animation)
+                        .setDimValue(0.4f)
+                        .setFocusAndOutsideEnable(true)
+                        .apply();
+                mCirclePop.showAtAnchorView(rlBoss, YGravity.CENTER, XGravity.CENTER, 0, 0);
+
+                btn_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCirclePop.dismiss();
+                    }
+                });
+                btn_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mCirclePop.dismiss();
+                        Toast.makeText(MainActivity.this, "保存成功，可在我的证件照中查看", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 
@@ -641,6 +703,8 @@ public class MainActivity extends FragmentActivity {
             case R.id.ll_select9:
                 break;
             case R.id.ll_select10:
+                cancelSelect();
+                showMore();
                 break;
             case R.id.tv_cancel:
                 cancelSelect();
@@ -664,7 +728,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void cancelSelect() {
-        EventBus.getDefault().post(new CancelEvent());//向homeseeFragment中发事件，重置boolean值
+        EventBus.getDefault().post(new CancelEvent());//向FolderFragment中发事件，重置boolean值
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.translate_select_out);
         Animation animation1 = AnimationUtils.loadAnimation(this, R.anim.translate_select_head_out);
         llSelect.startAnimation(animation);
@@ -672,7 +736,6 @@ public class MainActivity extends FragmentActivity {
         llSelect.setVisibility(View.GONE);
         llSelectHead.setVisibility(View.GONE);
         tvSelectAll.setText("全选");
-        docs = null;
     }
 
 

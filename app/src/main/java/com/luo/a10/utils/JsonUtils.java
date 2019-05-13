@@ -1,5 +1,6 @@
 package com.luo.a10.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -143,6 +144,31 @@ public class JsonUtils {
         return folderAndDocs;
     }
 
+    //路径搜索
+    public static List<FolderAndDoc> parseSearchByFolder(String result) {
+        List<FolderAndDoc> folderAndDocs = new ArrayList<>();
+        JSONObject jsonObject = JSON.parseObject(result);
+        String f = jsonObject.getString("CATALOG");
+        if(TextUtils.isEmpty(f)){
+            return null;
+        }
+        List<Folder1> fs = JSON.parseArray(f, Folder1.class);
+        if (fs != null && fs.size() > 0) {
+            for (int i = 0; i < fs.size(); i++) {
+                Folder1 folder = fs.get(i);
+                FolderAndDoc folderAndDoc = new FolderAndDoc();
+                folderAndDoc.setName("我的证件");
+                folderAndDoc.setpId(folder.getPid());
+                folderAndDoc.setId(folder.getId());
+                folderAndDoc.setUserId(folder.getUserId());
+                folderAndDocs.add(folderAndDoc);
+            }
+        }
+
+        Log.e("TAG", folderAndDocs.size() + "");
+        return folderAndDocs;
+    }
+
     //解析归档
     public static List<Guidang> parseFenlei(String response) {
         return JSON.parseArray(response, Guidang.class);
@@ -163,7 +189,9 @@ public class JsonUtils {
 //            datas.add(picTimeAxis);
 //        }
 
-
+        if(TextUtils.isEmpty(response)){
+            return null;
+        }
         LinkedHashMap<String, String> jsonMap = JSON.parseObject(response, new TypeReference<LinkedHashMap<String, String>>() {
         });
         //顺序遍历月份

@@ -1,6 +1,7 @@
 package com.luo.a10.fragment;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.luo.a10.R;
+import com.luo.a10.activity.FenleiActivity;
 import com.luo.a10.camera.CameraActivity;
 import com.luo.a10.fragment.others.CollectFragment1;
 import com.luo.a10.fragment.others.CollectFragment2;
@@ -62,7 +64,7 @@ public class CollectFragment extends BaseFragment {
         return R.layout.fragment_collect;
     }
 
-    @OnClick({R.id.ll1, R.id.ll2, R.id.ll3, R.id.ll4, R.id.ll5, R.id.ll7, R.id.ll8, R.id.ll9})
+    @OnClick({R.id.ll1, R.id.ll2, R.id.ll3, R.id.ll4, R.id.ll5, R.id.ll7, R.id.ll8, R.id.ll9,R.id.iv_dongjian})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll1:
@@ -93,6 +95,9 @@ public class CollectFragment extends BaseFragment {
                 CameraActivity.openCertificateCamera(getActivity(), 0);
                 break;
             case R.id.ll9:
+                break;
+            case R.id.iv_dongjian:
+                startActivity(new Intent(mContext,FenleiActivity.class));
                 break;
         }
     }

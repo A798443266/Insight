@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="将证件扫描到一张A4纸中，方便打印"
+            android:text="将证件合并到一张A4纸中，方便打印"
             android:textColor="#aaa"
             android:textSize="12sp"
             android:layout_centerHorizontal="true"
@@ -30,8 +30,7 @@
                 android:layout_height="90dp"
                 android:scaleType="fitXY"
                 android:visibility="gone"
-                android:layout_centerHorizontal="true"
-                android:background="#bfa"/>
+                android:layout_centerHorizontal="true"/>
 
             <ImageView
                 android:id="@+id/iv2"
@@ -40,8 +39,7 @@
                 android:visibility="gone"
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="#bfa"/>
+                android:layout_marginTop="20dp"/>
         </LinearLayout>
 
     </RelativeLayout>

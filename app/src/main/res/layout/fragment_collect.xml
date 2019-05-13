@@ -30,6 +30,7 @@
             android:layout_centerInParent="true">
 
             <ImageView
+                android:id="@+id/iv_dongjian"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:background="@drawable/tool_centor"

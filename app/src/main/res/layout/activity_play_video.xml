@@ -189,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="视频素材 / 星空.mp4"
+                    android:text="西湖/"
                     android:textColor="@color/system_black"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -412,7 +412,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="宇宙    紫色"
+                    android:text="西湖    雷峰塔"
                     android:textColor="@color/system_black"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -445,7 +445,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="宇宙"
+                        android:text="美景"
                         android:textColor="@color/system_black"
                         android:textSize="11sp" />
 
@@ -470,7 +470,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="紫色"
+                        android:text="西湖"
                         android:textColor="@color/system_black"
                         android:textSize="11sp" />
 
@@ -534,7 +534,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="宇宙星空，包括星球、山峦、星云等景物，紫色蓝色为主，可做素材用"
+                    android:text="西湖景色，美不胜收！"
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/system_black"
                     android:textSize="12sp" />

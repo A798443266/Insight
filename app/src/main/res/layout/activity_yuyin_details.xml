@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="标签1"
+                    android:text="策划案"
                     android:textColor="@color/system_gray"
                     android:layout_marginTop="10dp"
                     android:textSize="11sp"
@@ -132,7 +132,7 @@
                     android:layout_alignParentRight="true"
                     android:textColor="#333"
                     android:textSize="10sp"
-                    android:text="00:05"/>
+                    android:text="00:04"/>
             </RelativeLayout>
 
             <View
@@ -142,7 +142,7 @@
                 android:layout_marginRight="15dp"
                 android:background="@color/system_gray1"/>
 
-            <RelativeLayout
+           <!-- <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingLeft="15dp"
@@ -151,7 +151,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="标签2"
+                    android:text="人间天堂"
                     android:textColor="@color/system_gray"
                     android:layout_marginTop="10dp"
                     android:textSize="11sp"
@@ -164,8 +164,8 @@
                     android:layout_alignParentRight="true"
                     android:textColor="#333"
                     android:textSize="10sp"
-                    android:text="00:10"/>
-            </RelativeLayout>
+                    android:text="00:15"/>
+            </RelativeLayout>-->
 
         </LinearLayout>
 
@@ -182,7 +182,7 @@
             android:layout_marginRight="10dp"
             android:textColor="@color/system_black"
             android:layout_marginTop="20dp"
-            android:text="    今天上课的主要内容是熟悉Linux的常用命令，并且能在Linux系统中安装Mysql数据库，利用虚拟机充当服务器，在window系统下能正常连接并使用Mysql。"/>
+            android:text="    今天开会的主要内容是写好前期的策划案，以便后期更好的开展工作。"/>
 
 
         <com.wang.avi.AVLoadingIndicatorView
@@ -231,6 +231,7 @@
             android:background="@drawable/icon_play_white1"/>
 
         <LinearLayout
+            android:id="@+id/ll_lingcun"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -245,7 +246,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="标记"
+                android:text="另存为文本文件"
                 android:layout_marginTop="3dp"
                 android:textStyle="bold"
                 android:textSize="10sp"

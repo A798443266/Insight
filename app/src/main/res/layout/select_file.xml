@@ -303,7 +303,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="文本识别"
+                android:text="文件处理"
                 android:textColor="@color/system_white"
                 android:textSize="10sp" />
 
