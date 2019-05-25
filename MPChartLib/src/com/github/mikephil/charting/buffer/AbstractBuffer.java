@@ -3,13 +3,7 @@ package com.github.mikephil.charting.buffer;
 
 import java.util.List;
 
-/**
- * Buffer class to boost performance while drawing. Concept: Replace instead of
- * recreate.
- * 
- * @author Philipp Jahoda
- * @param <T> The data the buffer accepts to be fed with.
- */
+
 public abstract class AbstractBuffer<T> {
 
     /** index in the buffer */

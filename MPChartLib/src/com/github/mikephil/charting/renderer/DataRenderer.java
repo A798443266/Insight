@@ -15,34 +15,16 @@ import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-/**
- * Superclass of all render classes for the different data types (line, bar, ...).
- *
- * @author Philipp Jahoda
- */
 public abstract class DataRenderer extends Renderer {
 
-    /**
-     * the animator object used to perform animations on the chart data
-     */
     protected ChartAnimator mAnimator;
 
-    /**
-     * main paint object used for rendering
-     */
     protected Paint mRenderPaint;
 
-    /**
-     * paint used for highlighting values
-     */
     protected Paint mHighlightPaint;
 
     protected Paint mDrawPaint;
 
-    /**
-     * paint object for drawing values (text representing values of chart
-     * entries)
-     */
     protected Paint mValuePaint;
 
     public DataRenderer(ChartAnimator animator, ViewPortHandler viewPortHandler) {
@@ -65,22 +47,10 @@ public abstract class DataRenderer extends Renderer {
         mHighlightPaint.setColor(Color.rgb(255, 187, 115));
     }
 
-    /**
-     * Returns the Paint object this renderer uses for drawing the values
-     * (value-text).
-     *
-     * @return
-     */
     public Paint getPaintValues() {
         return mValuePaint;
     }
 
-    /**
-     * Returns the Paint object this renderer uses for drawing highlight
-     * indicators.
-     *
-     * @return
-     */
     public Paint getPaintHighlight() {
         return mHighlightPaint;
     }

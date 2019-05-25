@@ -13,7 +13,6 @@ import com.github.mikephil.charting.highlight.Highlight;
  * View that can be displayed when selecting values in the chart. Extend this class to provide custom layouts for your
  * markers.
  *
- * @author Philipp Jahoda
  */
 public abstract class MarkerView extends RelativeLayout {
 

@@ -5,25 +5,17 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.luo.a10.bean.change.FolderAndDoc;
 import com.luo.a10.eventBusObject.UpLoadEvent;
 import com.luo.a10.fileselect.bean.FileItem;
 import com.luo.a10.utils.Constant;
-import com.luo.a10.utils.SpUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.Callback;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import okhttp3.Call;
 import okhttp3.Response;
 

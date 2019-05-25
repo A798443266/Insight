@@ -6,12 +6,7 @@ import com.github.mikephil.charting.data.Entry;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implemented according to Wiki-Pseudocode {@link}
- * http://en.wikipedia.org/wiki/Ramer�Douglas�Peucker_algorithm
- * 
- * @author Philipp Baldauf & Phliipp Jahoda
- */
+
 public class Approximator {
 
     /** the type of filtering algorithm to use */

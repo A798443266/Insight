@@ -9,9 +9,6 @@ import com.github.mikephil.charting.interfaces.BarLineScatterCandleBubbleDataPro
 import com.github.mikephil.charting.utils.SelectionDetail;
 import com.github.mikephil.charting.utils.Utils;
 
-/**
- * Created by Philipp Jahoda on 21/07/15.
- */
 public class ChartHighlighter<T extends BarLineScatterCandleBubbleDataProvider> {
 
 	/** instance of the data-provider */

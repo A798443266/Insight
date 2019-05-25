@@ -2,7 +2,6 @@ package com.luo.a10.fileselect.bean;
 
 import java.util.List;
 
-
 public class FileResultInfo implements Comparable<FileResultInfo> {
     private String name;
     private List<FileItem> fileItems;

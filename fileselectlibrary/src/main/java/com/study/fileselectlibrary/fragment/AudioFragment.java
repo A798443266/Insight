@@ -1,6 +1,5 @@
 package com.study.fileselectlibrary.fragment;
 
-
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.MediaStore;
@@ -14,9 +13,6 @@ import com.study.fileselectlibrary.emnu.Type;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AudioFragment extends BaseFragment {
 
 

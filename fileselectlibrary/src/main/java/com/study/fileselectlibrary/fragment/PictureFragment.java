@@ -18,9 +18,7 @@ import com.study.fileselectlibrary.bean.FileItem;
 
 import java.util.List;
 
-
 public class PictureFragment extends BaseFragment {
-
 
     GridView gv;
     private ImageAdapter imageAdapter;

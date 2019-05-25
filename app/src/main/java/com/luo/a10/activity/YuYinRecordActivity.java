@@ -251,7 +251,6 @@ public class YuYinRecordActivity extends AppCompatActivity {
             case R.id.rl_back:
                 finish();
                 break;
-
             case R.id.iv_start:
                 final RecordAudioDialogFragment fragment = RecordAudioDialogFragment.newInstance();
                 fragment.show(getSupportFragmentManager(), RecordAudioDialogFragment.class.getSimpleName());

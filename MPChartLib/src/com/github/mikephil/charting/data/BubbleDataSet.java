@@ -2,9 +2,7 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.Color;
-
 import com.github.mikephil.charting.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.List;
 

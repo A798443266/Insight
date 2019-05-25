@@ -6,8 +6,7 @@ import java.util.List;
 
 /**
  * Data object that represents all data for the BarChart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class BarData extends BarLineScatterCandleBubbleData<BarDataSet> {
 

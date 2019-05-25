@@ -7,9 +7,6 @@ import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-/**
- * Created by Philipp Jahoda on 11/07/15.
- */
 public abstract class LineScatterCandleRadarRenderer extends DataRenderer {
 
     /**

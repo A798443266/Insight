@@ -4,8 +4,7 @@ import android.view.MotionEvent;
 
 /**
  * Listener for callbacks when doing gestures on the chart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public interface OnChartGestureListener {
 

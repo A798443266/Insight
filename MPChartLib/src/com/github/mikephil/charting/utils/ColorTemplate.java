@@ -7,13 +7,6 @@ import android.graphics.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Class that holds predefined color integer arrays (e.g.
- * ColorTemplate.VORDIPLOM_COLORS) and convenience methods for loading colors
- * from resources.
- * 
- * @author Philipp Jahoda
- */
 public class ColorTemplate {
 
     /**

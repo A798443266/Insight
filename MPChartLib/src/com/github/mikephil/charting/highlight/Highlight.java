@@ -3,8 +3,7 @@ package com.github.mikephil.charting.highlight;
 
 /**
  * Contains information needed to determine the highlighted value.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class Highlight {
 

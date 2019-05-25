@@ -23,7 +23,6 @@ import com.github.mikephil.charting.utils.Utils;
  * Implementation of the RadarChart, a "spidernet"-like chart. It works best
  * when displaying 5-10 entries per DataSet.
  *
- * @author Philipp Jahoda
  */
 public class RadarChart extends PieRadarChartBase<RadarData> {
 

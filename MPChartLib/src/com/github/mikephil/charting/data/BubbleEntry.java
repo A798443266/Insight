@@ -6,7 +6,6 @@ package com.github.mikephil.charting.data;
  * chart implementation: Copyright 2015 Pierre-Marc Airoldi Licensed under
  * Apache License 2.0
  *
- * @author Philipp Jahoda
  */
 public class BubbleEntry extends Entry {
 

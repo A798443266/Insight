@@ -24,7 +24,6 @@ import java.util.List;
 /**
  * View that represents a pie chart. Draws cake like slices.
  *
- * @author Philipp Jahoda
  */
 public class PieChart extends PieRadarChartBase<PieData> {
 

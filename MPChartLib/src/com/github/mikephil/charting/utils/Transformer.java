@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.utils;
 
 import android.graphics.Matrix;
@@ -11,12 +10,6 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.util.List;
 
-/**
- * Transformer class that contains all matrices and is responsible for
- * transforming values into pixels on the screen and backwards.
- * 
- * @author Philipp Jahoda
- */
 public class Transformer {
 
     /** matrix to map the values to the screen pixels */

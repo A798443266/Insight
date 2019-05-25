@@ -16,7 +16,6 @@ import java.util.List;
  * Class that holds all relevant data that represents the chart. That involves
  * at least one (or more) DataSets, and an array of x-values.
  *
- * @author Philipp Jahoda
  */
 public abstract class ChartData<T extends DataSet<? extends Entry>> {
 

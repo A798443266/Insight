@@ -3,7 +3,6 @@ package com.github.mikephil.charting.charts;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.BubbleDataSet;
 import com.github.mikephil.charting.interfaces.BubbleDataProvider;
@@ -15,7 +14,6 @@ import com.github.mikephil.charting.renderer.BubbleChartRenderer;
  * is the area of the bubble, not the radius or diameter of the bubble that
  * conveys the data.
  *
- * @author Philipp Jahoda
  */
 public class BubbleChart extends BarLineChartBase<BubbleData> implements BubbleDataProvider {
 

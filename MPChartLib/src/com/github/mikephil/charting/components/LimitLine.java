@@ -12,8 +12,7 @@ import com.github.mikephil.charting.utils.Utils;
  * The limit line is an additional feature for all Line-, Bar- and
  * ScatterCharts. It allows the displaying of an additional line in the chart
  * that marks a certain maximum / limit on the specified axis (x- or y-axis).
- * 
- * @author Philipp Jahoda
+ *
  */
 public class LimitLine {
 

@@ -11,10 +11,6 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/8/25.
- */
-
 public class PermissionCheckUtils {
     private static OnWantToOpenPermissionListener listener;
 

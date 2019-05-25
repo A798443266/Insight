@@ -12,12 +12,7 @@ import com.study.fileselectlibrary.emnu.Type;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/11/8.
- */
-
 public class VideoFragment extends BaseFragment {
-
 
     @Override
     public void setContentView() {
@@ -28,14 +23,12 @@ public class VideoFragment extends BaseFragment {
         setView(R.layout.fragment_video);
     }
 
-
     @Override
     protected void findViewById(View view) {
         lvAdapter.setAdapterType(Type.VIDEO);
         lv.setAdapter(lvAdapter);
 
     }
-
 
     @Override
     protected Cursor querySearchData() {

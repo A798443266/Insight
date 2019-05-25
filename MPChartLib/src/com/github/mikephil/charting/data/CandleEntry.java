@@ -3,8 +3,7 @@ package com.github.mikephil.charting.data;
 
 /**
  * Subclass of Entry that holds all values for one entry in a CandleStickChart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class CandleEntry extends Entry {
 

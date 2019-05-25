@@ -9,7 +9,6 @@ import com.github.mikephil.charting.utils.Utils;
 /**
  * This class encapsulates everything both Axis and Legend have in common.
  *
- * @author Philipp Jahoda
  */
 public abstract class ComponentBase {
 

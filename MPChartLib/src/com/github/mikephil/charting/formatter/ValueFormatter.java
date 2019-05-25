@@ -9,7 +9,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
  * it implement ValueFormatter. Then override the getFormattedValue(...) method
  * and return whatever you want.
  *
- * @author Philipp Jahoda
  */
 public interface ValueFormatter {
 

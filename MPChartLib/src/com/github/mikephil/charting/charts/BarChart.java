@@ -17,11 +17,6 @@ import com.github.mikephil.charting.interfaces.BarDataProvider;
 import com.github.mikephil.charting.renderer.BarChartRenderer;
 import com.github.mikephil.charting.renderer.XAxisRendererBarChart;
 
-/**
- * Chart that draws bars.
- * 
- * @author Philipp Jahoda
- */
 public class BarChart extends BarLineChartBase<BarData> implements BarDataProvider {
 
 	/** flag that enables or disables the highlighting arrow */

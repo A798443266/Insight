@@ -8,7 +8,6 @@ import com.github.mikephil.charting.interfaces.LineDataProvider;
 /**
  * Default formatter that calculates the position of the filled line.
  *
- * @author Philipp Jahoda
  */
 public class DefaultFillFormatter implements FillFormatter {
 

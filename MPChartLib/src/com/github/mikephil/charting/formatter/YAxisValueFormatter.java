@@ -3,7 +3,6 @@ package com.github.mikephil.charting.formatter;
 import com.github.mikephil.charting.components.YAxis;
 
 /**
- * Created by Philipp Jahoda on 20/09/15.
  * Custom formatter interface that allows formatting of
  * YAxis labels before they are being drawn.
  */

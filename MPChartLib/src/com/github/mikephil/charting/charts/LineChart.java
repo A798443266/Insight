@@ -10,8 +10,7 @@ import com.github.mikephil.charting.renderer.LineChartRenderer;
 
 /**
  * Chart that draws lines, surfaces, circles, ...
- * 
- * @author Philipp Jahoda
+ *
  */
 public class LineChart extends BarLineChartBase<LineData> implements LineDataProvider {
 

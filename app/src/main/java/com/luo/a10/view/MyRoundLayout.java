@@ -14,11 +14,6 @@ import android.widget.FrameLayout;
 
 import com.luo.a10.R;
 
-
-/**
- * Created by yangc on 2018/6/1.
- */
-
 public class MyRoundLayout extends FrameLayout {
 
     private float topLeftRadius;

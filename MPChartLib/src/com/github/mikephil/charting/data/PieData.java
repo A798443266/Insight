@@ -9,8 +9,7 @@ import java.util.List;
  * legend labels of the PieChart are created from the x-values array, and not
  * from the DataSet labels. Each PieData object can only represent one
  * PieDataSet (multiple PieDataSets inside a single PieChart are not possible).
- * 
- * @author Philipp Jahoda
+ *
  */
 public class PieData extends ChartData<PieDataSet> {
 

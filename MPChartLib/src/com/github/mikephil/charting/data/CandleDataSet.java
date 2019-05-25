@@ -11,8 +11,7 @@ import java.util.List;
 
 /**
  * DataSet for the CandleStickChart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry> {
 

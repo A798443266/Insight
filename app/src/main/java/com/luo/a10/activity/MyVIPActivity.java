@@ -1,14 +1,11 @@
 package com.luo.a10.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
 import com.luo.a10.R;
 import com.luo.a10.utils.Constant;
 import com.luo.a10.utils.SpUtils;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

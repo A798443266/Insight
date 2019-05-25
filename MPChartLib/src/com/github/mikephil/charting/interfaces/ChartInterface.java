@@ -9,8 +9,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 /**
  * Interface that provides everything there is to know about the dimensions,
  * bounds, and range of the chart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public interface ChartInterface {
 

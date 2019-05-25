@@ -7,16 +7,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
 
-/**
- * Predefined value-formatter that formats large numbers in a pretty way.
- * Outputs: 856 = 856; 1000 = 1k; 5821 = 5.8k; 10500 = 10k; 101800 = 102k;
- * 2000000 = 2m; 7800000 = 7.8m; 92150000 = 92m; 123200000 = 123m; 9999999 =
- * 10m; 1000000000 = 1b; Special thanks to Roman Gromov
- * (https://github.com/romangromov) for this piece of code.
- * 
- * @author Philipp Jahoda
- * @author Oleksandr Tyshkovets <olexandr.tyshkovets@gmail.com>
- */
 public class LargeValueFormatter implements ValueFormatter, YAxisValueFormatter {
 
     private static final String[] SUFFIX = new String[] {
@@ -52,10 +42,6 @@ public class LargeValueFormatter implements ValueFormatter, YAxisValueFormatter 
         return makePretty(value) + mText;
     }
 
-    /**
-     * Formats each number properly. Special thanks to Roman Gromov
-     * (https://github.com/romangromov) for this piece of code.
-     */
     private String makePretty(double number) {
 
         String r = mFormat.format(number);

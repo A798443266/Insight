@@ -1,9 +1,5 @@
 package com.luo.a10.fileselect.imageLoader;
 
-/**
- * Created by Administrator on 2017/11/10.
- */
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

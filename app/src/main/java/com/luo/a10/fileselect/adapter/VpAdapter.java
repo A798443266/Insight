@@ -7,11 +7,6 @@ import com.luo.a10.fileselect.fragment.Base1Fragment;
 
 import java.util.List;
 
-
-/**
- * Created by Administrator on 2017/11/8.
- */
-
 public class VpAdapter extends FragmentPagerAdapter {
     private final FragmentManager fm;
     private final List<Base1Fragment> list;

@@ -24,10 +24,6 @@ import com.luo.a10.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-/**
- * Created by zhouwei on 2017/12/5.
- */
-
 public class PerfectArcView extends View implements Target {
     private Paint mPaint;
     private Bitmap mBitmap;

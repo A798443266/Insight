@@ -56,7 +56,6 @@ import java.util.List;
 /**
  * Baseclass of all Chart-Views.
  *
- * @author Philipp Jahoda
  */
 @SuppressLint("NewApi")
 public abstract class Chart<T extends ChartData<? extends DataSet<? extends Entry>>> extends

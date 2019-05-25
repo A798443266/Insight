@@ -11,8 +11,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 /**
  * Baseclass of all axis renderers.
- * 
- * @author Philipp Jahoda
+ *
  */
 public abstract class AxisRenderer extends Renderer {
 

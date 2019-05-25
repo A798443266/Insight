@@ -27,8 +27,7 @@ import java.util.List;
 
 /**
  * Baseclass of PieChart and RadarChart.
- * 
- * @author Philipp Jahoda
+ *
  */
 public abstract class PieRadarChartBase<T extends ChartData<? extends DataSet<? extends Entry>>>
         extends Chart<T> {

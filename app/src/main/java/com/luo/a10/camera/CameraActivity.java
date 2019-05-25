@@ -64,7 +64,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private View resultView;
     private int type;
 
-    private String[] titles = {"身份证", "营业执照", "户口本", "提取文字"};
+    private String[] titles = {"身份证", "营业执照", "户口本", "驾驶证"};
     private float screenMinSize;
 
     @Override
@@ -132,7 +132,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         LinearLayout.LayoutParams cropParams = new LinearLayout.LayoutParams((int) width, (int) height);
                         containerView.setLayoutParams(containerParams);
                         cropView.setLayoutParams(cropParams);
-
                         cropView.setImageResource(R.mipmap.camera_idcard_front);
                         break;
                     case 1:
@@ -160,7 +159,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         break;
                     case 3:
                         ISBACK = false;
-                        cropView.setVisibility(View.GONE);
+                        cropView.setVisibility(View.VISIBLE);
+                        float width4 = (int) (screenMinSize * 0.8);
+                        float height4 = (int) (width4 * 43.0f / 30.0f);
+                        LinearLayout.LayoutParams containerParams4 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) height4);
+                        LinearLayout.LayoutParams cropParams4 = new LinearLayout.LayoutParams((int) width4, (int) height4);
+                        containerView.setLayoutParams(containerParams4);
+                        cropView.setLayoutParams(cropParams4);
+                        cropView.setImageResource(R.mipmap.camera_company);
                         break;
                 }
             }

@@ -19,7 +19,6 @@ import com.study.fileselectlibrary.view.RotateImageViewAware;
 import java.io.File;
 import java.util.List;
 
-
 public class ImageAdapter extends BaseAdapter {
 
 

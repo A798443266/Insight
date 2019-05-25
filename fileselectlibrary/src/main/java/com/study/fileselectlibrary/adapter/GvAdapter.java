@@ -19,10 +19,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/11/10.
- */
-
 public class GvAdapter extends BaseAdapter {
     private final Context context;
     private final List<FileItem> items;

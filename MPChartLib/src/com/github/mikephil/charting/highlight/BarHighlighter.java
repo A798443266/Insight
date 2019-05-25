@@ -5,9 +5,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.BarDataProvider;
 
-/**
- * Created by Philipp Jahoda on 22/07/15.
- */
+
 public class BarHighlighter extends ChartHighlighter<BarDataProvider> {
 
 	public BarHighlighter(BarDataProvider chart) {

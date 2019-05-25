@@ -12,8 +12,7 @@ import java.util.List;
 
 /**
  * Baseclass of all labels.
- * 
- * @author Philipp Jahoda
+ *
  */
 public abstract class AxisBase extends ComponentBase {
 

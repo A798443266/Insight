@@ -5,7 +5,6 @@ import com.github.mikephil.charting.components.YAxis;
 import java.text.DecimalFormat;
 
 /**
- * Created by Philipp Jahoda on 20/09/15.
  * Default formatter used for formatting labels of the YAxis. Uses a DecimalFormat with
  * pre-calculated number of digits (depending on max and min value).
  */

@@ -11,10 +11,6 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/11/8.
- */
-
 public class DocumentFragment extends BaseFragment {
     @Override
     public void setContentView() {

@@ -17,11 +17,6 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Touchlistener for the PieChart.
- * 
- * @author Philipp Jahoda
- */
 public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChartBase<?>> {
 
     private PointF mTouchStartPoint = new PointF();

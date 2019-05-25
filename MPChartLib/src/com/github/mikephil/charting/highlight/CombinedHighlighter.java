@@ -9,9 +9,6 @@ import com.github.mikephil.charting.utils.SelectionDetail;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Philipp Jahoda on 12/09/15.
- */
 public class CombinedHighlighter extends ChartHighlighter<BarLineScatterCandleBubbleDataProvider> {
 
     public CombinedHighlighter(BarLineScatterCandleBubbleDataProvider chart) {

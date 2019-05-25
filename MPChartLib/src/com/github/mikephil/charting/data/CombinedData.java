@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * Data object that allows the combination of Line-, Bar-, Scatter-, Bubble- and
  * CandleData. Used in the CombinedChart class.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class CombinedData extends BarLineScatterCandleBubbleData<BarLineScatterCandleBubbleDataSet<?>> {
 

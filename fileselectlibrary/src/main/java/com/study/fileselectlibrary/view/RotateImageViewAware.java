@@ -1,6 +1,5 @@
 package com.study.fileselectlibrary.view;
 
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.study.fileselectlibrary.utils.BitmapUtil;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
-
 
 public class RotateImageViewAware implements ImageAware {
 

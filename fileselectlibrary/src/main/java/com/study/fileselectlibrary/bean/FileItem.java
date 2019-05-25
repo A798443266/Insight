@@ -3,10 +3,6 @@ package com.study.fileselectlibrary.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Administrator on 2017/11/8.
- */
-
 public class FileItem implements Comparable<FileItem>, Parcelable {
     private String name;
     private boolean isFile;

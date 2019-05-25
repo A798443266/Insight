@@ -20,10 +20,6 @@ import com.study.fileselectlibrary.imageLoader.VideoThumbnailLoader;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/11/9.
- */
-
 public class ElvAdapter extends BaseExpandableListAdapter {
     public final Context context;
     public final List<FileResultInfo> lists;
@@ -96,15 +92,6 @@ public class ElvAdapter extends BaseExpandableListAdapter {
         String path = fileItem.getPath();
         final ImageView iv = (ImageView) convertView.findViewById(R.id.iv);
 
-//        if (name.contains(".") && name.substring(name.lastIndexOf("."), name.length()).contains(".jpg")) {
-//            iv.setImageDrawable(new BitmapDrawable(fileItem.getPath()));
-//        } else {
-//            iv.setImageResource(R.drawable.type_other);
-//        }
-//        TextView tvSize = (TextView) convertView.findViewById(R.id.tv_size);
-//        tvSize.setText(fileItem.getDataSize());
-//        TextView tvTime = (TextView) convertView.findViewById(R.id.tv_time);
-//        tvTime.setText(fileItem.getDataDate());
         switch (fileType) {
             case VIDEO:
                 VideoThumbnailLoader.getInstance(context).displayBitmap(path, name, 60, 60,

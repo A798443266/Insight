@@ -1,4 +1,3 @@
-
 package com.github.mikephil.charting.utils;
 
 import android.annotation.SuppressLint;
@@ -20,14 +19,6 @@ import com.github.mikephil.charting.components.YAxis.AxisDependency;
 import java.text.DecimalFormat;
 import java.util.List;
 
-/**
- * Utilities class that has some helper methods. Needs to be initialized by
- * calling Utils.init(...) before usage. Inside the Chart.init() method, this is
- * done, if the Utils are used before that, Utils.init(...) needs to be called
- * manually.
- * 
- * @author Philipp Jahoda
- */
 public abstract class Utils {
 
     private static DisplayMetrics mMetrics;

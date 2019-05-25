@@ -12,8 +12,7 @@ import com.github.mikephil.charting.renderer.ScatterChartRenderer;
  * The ScatterChart. Draws dots, triangles, squares and custom shapes into the
  * Chart-View. CIRCLE and SCQUARE offer the best performance, TRIANGLE has the
  * worst performance.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class ScatterChart extends BarLineChartBase<ScatterData> implements ScatterDataProvider {
 

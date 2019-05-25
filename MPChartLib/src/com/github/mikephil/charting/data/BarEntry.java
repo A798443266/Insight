@@ -2,8 +2,7 @@ package com.github.mikephil.charting.data;
 
 /**
  * Entry class for the BarChart. (especially stacked bars)
- * 
- * @author Philipp Jahoda
+ *
  */
 public class BarEntry extends Entry {
 

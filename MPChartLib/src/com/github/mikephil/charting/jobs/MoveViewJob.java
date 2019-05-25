@@ -10,8 +10,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
  * Runnable that is used for viewport modifications since they cannot be
  * executed at any time. This can be used to delay the execution of viewport
  * modifications until the onSizeChanged(...) method of the chartview is called.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class MoveViewJob implements Runnable {
 

@@ -1,17 +1,9 @@
 
 package com.github.mikephil.charting.animation;
 
-/**
- * Easing options.
- * 
- * @author Daniel Cohen Gindi
- */
+
 public class Easing {
 
-    /**
-     * Use EasingOption instead of EasingFunction to avoid crashes below Android
-     * 3.0
-     */
     public enum EasingOption {
         Linear,
         EaseInQuad,

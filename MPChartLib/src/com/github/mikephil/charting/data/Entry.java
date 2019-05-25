@@ -4,8 +4,7 @@ package com.github.mikephil.charting.data;
 /**
  * Class representing one entry in the chart. Might contain multiple values.
  * Might only contain a single value depending on the used constructor.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class Entry {
 

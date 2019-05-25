@@ -1,11 +1,5 @@
-
 package com.github.mikephil.charting.utils;
 
-/**
- * Transformer class for the HorizontalBarChart.
- * 
- * @author Philipp Jahoda
- */
 public class TransformerHorizontalBarChart extends Transformer {
 
     public TransformerHorizontalBarChart(ViewPortHandler viewPortHandler) {

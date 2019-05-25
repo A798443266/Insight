@@ -2,10 +2,6 @@ package com.study.fileselectlibrary.bean;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/11/9.
- */
-
 public class FileResultInfo implements Comparable<FileResultInfo> {
     private String name;
     private List<FileItem> fileItems;

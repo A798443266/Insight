@@ -1,6 +1,5 @@
 package com.study.fileselectlibrary.fragment;
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
@@ -44,9 +43,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public abstract class BaseFragment extends Fragment {
 
     ListView lv;

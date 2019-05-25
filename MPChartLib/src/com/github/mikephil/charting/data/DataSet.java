@@ -20,7 +20,6 @@ import java.util.List;
  * groups of values inside the Chart (e.g. the values for a specific line in the
  * LineChart, or the values of a specific group of bars in the BarChart).
  *
- * @author Philipp Jahoda
  */
 public abstract class DataSet<T extends Entry> {
 

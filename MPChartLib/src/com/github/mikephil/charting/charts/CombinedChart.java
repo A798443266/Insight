@@ -22,8 +22,7 @@ import com.github.mikephil.charting.renderer.CombinedChartRenderer;
 /**
  * This chart class allows the combination of lines, bars, scatter and candle
  * data all displayed in one chart area.
- * 
- * @author Philipp Jahoda
+ *
  */
 public class CombinedChart extends BarLineChartBase<CombinedData> implements LineDataProvider,
         BarDataProvider, ScatterDataProvider, CandleDataProvider, BubbleDataProvider {
